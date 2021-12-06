@@ -16,7 +16,7 @@ public class BaseAPI {
 	protected static RequestSpecification requestSpecGlobal;
 
 	@BeforeSuite
-	public static void initialize() {
+	public static RequestSpecification initialize() {
 		Logging.logToTestNgReporter();
 		
 		RestAssured.baseURI = data.getEnvProp("host");
@@ -28,5 +28,7 @@ public class BaseAPI {
 		builder.addHeader("Accept", "application/json");
 		builder.setContentType("application/json");
 		requestSpecGlobal = builder.build();
+		
+		return requestSpecGlobal;
 	}
 }
